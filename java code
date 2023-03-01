@@ -1,0 +1,132 @@
+package lecturesession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.swing.JOptionPane;
+public class Assignment01 {
+public static int getRandomValue(int Min, int Max)
+{
+// Get and return the random integer
+// within Min and Max
+return ThreadLocalRandom
+.current()
+.nextInt(Min, Max + 1);
+}
+public static void main(String args[]){
+class patient{
+public String name, noic;
+public String symptom;
+patient (String p_name, String p_noic, String p_symp){
+this.name = p_name;
+this.noic = p_noic;
+this.symptom = p_symp;
+}
+}
+Scanner input = new Scanner(System.in);
+int op=0;
+String[] options5 = new String[] {"Yes", "No"};
+// initial option value, we'll assign array address to each
+int response4 = JOptionPane.showOptionDialog(null, """
+Hi, welcome to MSU Medical Centre.
+This apps will take your record,
+Do you approve?""",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options5, //object that we refer in this case its
+options5[0]); //initial value, in this case I will start with 0
+if(response4 == 0){
+op=1;
+while(op>0 && op<2){
+String[] options = new String[] {" Walk-in", "Appointment"};
+// initial option value, we'll assign array address to each
+int response1 = JOptionPane.showOptionDialog(null, "Select a session :",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options, //object that we refer in this case its
+options[0]); //initial value, in this case I will start with 0
+if(response1 == 0){ //walk-in
+System.out.print("Your Name : ");
+String name = input.nextLine();
+System.out.print("Your IC Number : ");
+String noic = input.nextLine();
+String[] options2 = new String[] {" Cough","Flu","Influenza","Others"};
+// initial option value, we'll assign array address to each
+int response2 = JOptionPane.showOptionDialog(null, "What is your symptom :",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options2, //object that we refer in this case its
+options2[0]); //initial value, in this case I will start with 0
+String symp = "";
+if(response2 == 0){symp = "Cough";}
+if(response2 == 1){symp = "Flu";}
+if(response2 == 2){symp = "Influenza";}
+if(response2 == 3){symp = "Others";}
+int Min = 1, Max = 100;
+int appointment_no = getRandomValue(Min, Max);
+System.out.println("");
+patient O_patient = new patient(name, noic, symp);
+//objects declaration and parameter vallue to store data
+String P_name = O_patient.name;
+String P_noic = O_patient.noic;
+String P_symp = O_patient.symptom;
+//declaration
+JOptionPane.showMessageDialog(null, "Your name : "+P_name+"\nYour IC number : "+P_noic+"\nYour symptom : "
++P_symp+"\nYour queueing number : "+appointment_no+"\n");
+//output
+String[] options3 = new String[] {"Yes","No"};
+// initial option value, we'll assign array address to each
+int response3 = JOptionPane.showOptionDialog(null, "Anything else?",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options3, //object that we refer in this case its
+options3[0]); //initial value, in this case I will start with 0
+if(response3==0){op=1;}
+else if(response3==1){ JOptionPane.showMessageDialog(null, "System going to exit.");
+System.exit(0);}
+} // end response
+else if (response1 == 1){//Appointment
+System.out.print("Your Name : ");
+String name = input.nextLine();
+System.out.print("Your IC Number : ");
+String noic = input.nextLine();
+String[] options2 = new String[] {" Cough","Flu","Influenza","Others"};
+// initial option value, we'll assign array address to each
+int response2 = JOptionPane.showOptionDialog(null, "What is your symptom :",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options2, //object that we refer in this case its
+options2[0]); //initial value, in this case I will start with 0
+String symp = "";
+if(response2 == 0){symp = "Cough";}
+if(response2 == 1){symp = "Flu";}
+if(response2 == 2){symp = "Influenza";}
+if(response2 == 3){symp = "Others";}
+System.out.println("");
+patient O_patient = new patient(name, noic, symp);
+//objects declaration and parameter vallue to store data
+String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+//generates date for appointment
+int Min = 1, Max = 100;
+int appointment_no = getRandomValue(Min, Max);
+//generates appointment id
+JOptionPane.showMessageDialog(null, "Hi "+name+",\nIC Number : "+noic
++ "\nYour Symptom : "+symp+"\nYour Appointment ID : "+appointment_no
++ "\nYour appointment date will be "+date+"\nRemember to bring your IC.");
+String[] options4 = new String[] {"Yes","No"};
+// initial option value, we'll assign array address to each
+int response3 = JOptionPane.showOptionDialog(null, "Anything else?",
+"MSU APPOINTMENT MEDICAL APPS",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+null, //null cause no icon
+options4, //object that we refer in this case its
+options4[0]); //initial value, in this case I will start with 0
+if(response3==0){op=1;}
+else if(response3==1){ JOptionPane.showMessageDialog(null, "System going to exit.");
+System.exit(0);}
+}
+}//while loop
+}
+else if(response4==1){JOptionPane.showMessageDialog(null, "System going to exit.");
+System.exit(0);}
+}
+}
